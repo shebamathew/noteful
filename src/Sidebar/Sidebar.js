@@ -6,8 +6,12 @@ function Sidebar (props) {
         return (
             <div className="sidebar">
                 {props.children}
-                <Folder /> 
-                <Folder /> 
+                {props.folders.map((folder) =>
+                   <Folder 
+                        key={folder.id}
+                        title={folder.name} 
+                    />
+                )}   
             </div>
         )
 }

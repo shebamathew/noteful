@@ -1,13 +1,13 @@
 import React from 'react'; 
 
-class Folder extends React.Component {
-    render () {
+function Folder (props) {
+
         return (
             <div className="folder">
-                Folder
+                {props.title}
             </div>
         )
     }
-}
+
 
 export default Folder; 
