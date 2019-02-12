@@ -1,13 +1,15 @@
 import React from 'react'
 
-class Note extends React.Component {
-    render () {
+
+function Note (props) {
         return (
             <div className="note">
-                Note
+                <h3>{props.title}</h3>
+                <p>Date Modified on {props.date}</p>
+                <button type="button">Delete Note</button>
             </div>
         )
     }
-}
+
 
 export default Note; 
