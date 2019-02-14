@@ -1,19 +1,33 @@
 import React from 'react'
 import './Sidebar.css'; 
 import Folder from '../Folder/Folder'; 
+import {Link, NavLink} from 'react-router-dom'; 
+import NotefulContext from '../NotefulContext'
 
-function Sidebar (props) {
+class Sidebar extends React.Component {
+
+    static contextType = NotefulContext; 
+
+    render() {
+        const folders = this.context.folders; 
+        // const folderButtons = this.props.folders.map((folder,index) => (
+        //     <button key={index}>
+        //         {folder.name}
+        //     </button>
+        // )); 
         return (
             <div className="sidebar">
-                {props.children}
-                {props.folders.map((folder) =>
-                   <Folder 
+                {folders.map((folder) =>
+                    <Folder 
+                        // folder={folders}
                         key={folder.id}
-                        title={folder.name} 
+                        title={folder.name}
                     />
-                )}   
+                )}
+                <button type="button">Add Folder</button>
             </div>
         )
+    }
 }
 
 
