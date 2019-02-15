@@ -22,6 +22,7 @@ class App extends Component {
   }
 
   renderFolderPage() {
+    const { notes, folders } = this.state
     return this.state.folders.map( (folder, index) => (
       <button key={index} onClick={() => this.handleFolderButtonClick(index)}>
         {folder.name}
@@ -47,9 +48,8 @@ class App extends Component {
       <>
       <NotefulContext.Provider value={contextValue}>
           <Header />
-          <Route exact path='/' component={Sidebar} />
-          {this.renderFolderPage()}
-          <Route path='/' component={Main} />
+          <Sidebar/>
+          <Main />
       </NotefulContext.Provider>
       </>
     )

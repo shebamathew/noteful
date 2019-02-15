@@ -19,7 +19,6 @@ class Sidebar extends React.Component {
             <div className="sidebar">
                 {folders.map((folder) =>
                     <Folder 
-                        // folder={folders}
                         key={folder.id}
                         title={folder.name}
                     />

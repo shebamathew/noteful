@@ -1,19 +1,13 @@
 import React from 'react'; 
-
+import {Link, NavLink} from 'react-router-dom'; 
 class Folder extends React.Component {
     render() {
-        // const folderName = this.props.title
-        // const buttons = this.props.map((folderName, index) => (
-        //     <button key={index}>
-        //       {folderName}
-        //     </button>
-        // ))
-
+        const folderId = this.props.key; 
         return (
             <div className="folder">
-                <button>
+                <a to {...`folders/${folderId}`}>
                     {this.props.title}
-                </button>
+                </a>
             </div>
         )
     }

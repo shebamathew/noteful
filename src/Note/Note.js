@@ -6,7 +6,7 @@ function Note (props) {
             <div className="note">
                 <h3>{props.title}</h3>
                 <p>Date Modified on {props.date}</p>
-                <button type="button">Delete</button>
+                <button type="button">Delete Note</button>
             </div>
         )
     }
