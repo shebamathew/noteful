@@ -4,7 +4,9 @@ import NotefulContext from '../NotefulContext'
 import './Main.css'; 
 
 class Main extends React.Component {
-    static contextType = NotefulContext
+    // TODO: refactor to make use of context instead of props.
+    // static contextType = NotefulContext
+    static defaultProps = {notes: []}
 
     render() {
         // const noteButtons = this.props.notes.map((note,index) => (
@@ -17,13 +19,10 @@ class Main extends React.Component {
         //         {note.name}
         //     </li>
         // )
-        const notes = this.context.notes; 
+        const notes = this.props.notes; 
+        console.log(notes)
         return (
             <div className="main">
-                {/* <ul>
-                    {noteList}
-                </ul> */}
-                {/* {noteButtons} */}
                 {notes.map((note) =>
                     <Note 
                         key={note.id}
