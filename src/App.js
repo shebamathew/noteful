@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css'; 
-import Sidebar from './Sidebar/Sidebar';
-import Main from './Main/Main'; 
-import Header from './Header/Header';
 import dummyStore from './dummy-store'; 
-import { Route } from 'react-router-dom'; 
+import { Route, Switch } from 'react-router-dom'; 
+import HomePage from './HomePage/HomePage'; 
+import FolderPage from './FolderPage/FolderPage';
+import NotePage from './NotePage/NotePage'; 
 import NotefulContext from './NotefulContext';
+
 
 class App extends Component {
   state = {
@@ -17,41 +18,51 @@ class App extends Component {
     this.setState(dummyStore); 
   }
 
-  handleFolderButtonClick(index) {
-    console.log('button clicked!', { index })
-  }
+  // handleFolderButtonClick(index) {
+  //   console.log('button clicked!', { index })
+  // }
 
-  renderFolderPage() {
-    const { notes, folders } = this.state
-    return this.state.folders.map( (folder, index) => (
-      <button key={index} onClick={() => this.handleFolderButtonClick(index)}>
-        {folder.name}
-      </button>
-    ))
-  }
+  // renderFolderPage() {
+  //   const folders  = this.state.folders; 
+  //   return folders.map( (folder, index) => (
+  //     <button key={index} onClick={() => this.handleFolderButtonClick(index)}>
+  //       {folder.name}
+  //     </button>
+  //   ))
+  // }
 
-  renderNotePage() {
-    return this.state.notes.map( (note, index) => (
-      <button key={index}>
-        {note.name}
-      </button>
-    ))
-  }
+  // renderNotePage() {
+  //   return this.state.notes.map( (note, index) => (
+  //     <button key={index}>
+  //       {note.name}
+  //     </button>
+  //   ))
+  // }
 
   render() {
+    const {notes, folders} = this.state; 
     const contextValue = {
-      notes: this.state.notes, 
-      folders: this.state.folders, 
+      notes, 
+      folders
     }
-    
+
+   if (folders.length !== 0) {
+    console.log(folders[0].id); 
+   } 
+
     return ( 
-      <>
-      <NotefulContext.Provider value={contextValue}>
-          <Header />
-          <Sidebar/>
-          <Main />
-      </NotefulContext.Provider>
-      </>
+      <div className="App">
+        <NotefulContext.Provider value={contextValue}>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route 
+              path='/folder/:folderId' component={FolderPage}
+              // render={(props) => <FolderPage {...props} folderId={folders.id} />}
+            />
+            <Route path='/note' component={NotePage} />
+          </Switch>
+        </NotefulContext.Provider>
+      </div>
     )
   }
 }

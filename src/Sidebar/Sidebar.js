@@ -1,8 +1,7 @@
 import React from 'react'
 import './Sidebar.css'; 
-import Folder from '../Folder/Folder'; 
-import {Link, NavLink} from 'react-router-dom'; 
-import NotefulContext from '../NotefulContext'
+import {NavLink} from 'react-router-dom'; 
+import NotefulContext from '../NotefulContext'; 
 
 class Sidebar extends React.Component {
 
@@ -10,19 +9,18 @@ class Sidebar extends React.Component {
 
     render() {
         const folders = this.context.folders; 
-        // const folderButtons = this.props.folders.map((folder,index) => (
-        //     <button key={index}>
-        //         {folder.name}
-        //     </button>
-        // )); 
+    
         return (
             <div className="sidebar">
-                {folders.map((folder) =>
-                    <Folder 
-                        key={folder.id}
-                        title={folder.name}
-                    />
-                )}
+                <ul>
+                    {folders.map(folder =>
+                        <li key={folder.id}>
+                            <NavLink to={`/folder/${folder.id}`}>
+                                {folder.name}
+                            </NavLink>
+                        </li>
+                    )}
+                </ul>
                 <button type="button">Add Folder</button>
             </div>
         )
