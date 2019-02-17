@@ -9,35 +9,33 @@ import NotefulContext from './NotefulContext';
 
 
 class App extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       notes: [], 
       folders: [],
-  }; 
+    }; 
+  }
   
   componentDidMount() {
     this.setState(dummyStore); 
+    const getFolders = fetch('http://localhost:9090/folders'); 
+    const getNotes = fetch('http://localhost:9090/notes'); 
+    Promise.all([getFolders, getNotes])
+      .then(responses => Promise.all(responses.map(response => response.json())))
+      .then(([folders, notes]) =>
+				this.setState({
+					folders,
+					notes
+				})
+			);
   }
 
-  handleFolderClick = (index) => {
-    console.log('button clicked!', { index })
-  }
-
-  // renderFolderPage() {
-  //   const folders  = this.state.folders; 
-  //   return folders.map( (folder, index) => (
-  //     <button key={index} onClick={() => this.handleFolderButtonClick(index)}>
-  //       {folder.name}
-  //     </button>
-  //   ))
-  // }
-
-  // renderNotePage() {
-  //   return this.state.notes.map( (note, index) => (
-  //     <button key={index}>
-  //       {note.name}
-  //     </button>
-  //   ))
-  // }
+  handleDeleteNoteClick = (noteID) => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteID)
+    }); 
+	}
 
   render() {
     const {notes, folders} = this.state; 
