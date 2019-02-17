@@ -18,9 +18,9 @@ class App extends Component {
     this.setState(dummyStore); 
   }
 
-  // handleFolderButtonClick(index) {
-  //   console.log('button clicked!', { index })
-  // }
+  handleFolderClick = (index) => {
+    console.log('button clicked!', { index })
+  }
 
   // renderFolderPage() {
   //   const folders  = this.state.folders; 
@@ -56,7 +56,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route 
-              path='/folder/:folderId' component={FolderPage}
+              path='/folder/:folderId' component={FolderPage} 
               // render={(props) => <FolderPage {...props} folderId={folders.id} />}
             />
             <Route path='/note' component={NotePage} />

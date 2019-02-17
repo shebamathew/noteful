@@ -5,21 +5,13 @@ import './Main.css';
 
 class Main extends React.Component {
     // TODO: refactor to make use of context instead of props.
-    // static contextType = NotefulContext
-    static defaultProps = {notes: []}
+    static contextType = NotefulContext
+    // static defaultProps = {notes: []};
 
     render() {
-        // const noteButtons = this.props.notes.map((note,index) => (
-        //     <button key={index}>
-        //         {note.name}
-        //     </button>
-        // ))
-        // const noteList = props.notes.map((note) =>
-        //     <li key={note.id}>
-        //         {note.name}
-        //     </li>
-        // )
-        const notes = this.props.notes; 
+        const notes = this.context.notes.filter(note => 
+            note.folderId === this.props.folderId
+        )
         console.log(notes)
         return (
             <div className="main">

@@ -8,17 +8,18 @@ export default class FolderPage extends React.Component {
     static contextType = NotefulContext; 
 
     render() {  
-        const notes = this.context.notes.filter(note => 
-            note.folderId === this.props.match.params.folderId
-        ) 
-        console.log(notes); 
-
+        // const notes = this.context.notes.filter(note => 
+        //     note.folderId === this.props.match.params.folderId
+        // ) 
+    
+        const folderId = this.props.match.params.folderId; 
+        // console.log(notes); 
         return (
             <div className="folderPage">
                 <Header/>
                 <p>This is the Folder Page!</p>
                 <Sidebar/>
-                <Main notes={notes}/>
+                <Main folderId={folderId}/>
             </div>
         )
     }
