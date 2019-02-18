@@ -19,16 +19,16 @@ class App extends Component {
   
   componentDidMount() {
     this.setState(dummyStore); 
-    const getFolders = fetch('http://localhost:9090/folders'); 
-    const getNotes = fetch('http://localhost:9090/notes'); 
-    Promise.all([getFolders, getNotes])
-      .then(responses => Promise.all(responses.map(response => response.json())))
-      .then(([folders, notes]) =>
-				this.setState({
-					folders,
-					notes
-				})
-			);
+    // const getFolders = fetch('http://localhost:9090/folders'); 
+    // const getNotes = fetch('http://localhost:9090/notes'); 
+    // Promise.all([getFolders, getNotes])
+    //   .then(responses => Promise.all(responses.map(response => response.json())))
+    //   .then(([folders, notes]) =>
+		// 		this.setState({
+		// 			folders,
+		// 			notes
+		// 		})
+		// 	);
   }
 
   handleDeleteNoteClick = (noteID) => {
@@ -41,7 +41,10 @@ class App extends Component {
     const {notes, folders} = this.state; 
     const contextValue = {
       notes, 
-      folders
+      folders, 
+      deleteNote: () => {
+        this.handleDeleteNoteClick(); 
+      }
     }
 
    if (folders.length !== 0) {
@@ -57,7 +60,7 @@ class App extends Component {
               path='/folder/:folderId' component={FolderPage} 
               // render={(props) => <FolderPage {...props} folderId={folders.id} />}
             />
-            <Route path='/note' component={NotePage} />
+            <Route path='/note/:noteId' component={NotePage} />
           </Switch>
         </NotefulContext.Provider>
       </div>

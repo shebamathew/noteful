@@ -18,6 +18,7 @@ class Main extends React.Component {
                 {notes.map((note) =>
                     <Note 
                         key={note.id}
+                        noteId={note.id}
                         title={note.name}
                         date={note.modified}
                         content={note.content}
