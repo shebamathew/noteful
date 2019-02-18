@@ -1,6 +1,6 @@
 import React from 'react'; 
 
-class AddFolder extends React.Component {
+export default class AddNote extends React.Component {
     render() {
         return (
             <form>
