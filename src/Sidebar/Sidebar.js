@@ -2,6 +2,7 @@ import React from 'react'
 import './Sidebar.css'; 
 import {NavLink} from 'react-router-dom'; 
 import NotefulContext from '../NotefulContext'; 
+import {Link} from 'react-router-dom';
 
 class Sidebar extends React.Component {
 
@@ -21,7 +22,7 @@ class Sidebar extends React.Component {
                         </li>
                     )}
                 </ul>
-                <button type="button">Add Folder</button>
+                <Link to="/add-folder">Add Folder</Link>
             </div>
         )
     }

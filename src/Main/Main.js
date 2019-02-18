@@ -2,6 +2,7 @@ import React from 'react'
 import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext'
 import './Main.css'; 
+import {Link} from 'react-router-dom'; 
 
 class Main extends React.Component {
     // TODO: refactor to make use of context instead of props.
@@ -24,7 +25,7 @@ class Main extends React.Component {
                         content={note.content}
                     />
                 )}
-                <button type="button">Add Note</button>
+                <Link to="/add-note">Add Note</Link>
             </div>
         )
 

@@ -6,6 +6,8 @@ import HomePage from './HomePage/HomePage';
 import FolderPage from './FolderPage/FolderPage';
 import NotePage from './NotePage/NotePage'; 
 import NotefulContext from './NotefulContext';
+import AddFolder from './AddFolder/AddFolder'; 
+import AddNote from './AddNote/AddNote'; 
 
 
 class App extends Component {
@@ -59,6 +61,12 @@ class App extends Component {
             <Route 
               path='/folder/:folderId' component={FolderPage} 
               // render={(props) => <FolderPage {...props} folderId={folders.id} />}
+            />
+            <Route
+              path='/add-folder'component={AddFolder}
+            />
+            <Route
+              path='/add-note'component={AddNote}
             />
             <Route path='/note/:noteId' component={NotePage} />
           </Switch>
